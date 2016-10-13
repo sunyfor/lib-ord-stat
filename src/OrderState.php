@@ -15,14 +15,16 @@
  */
 namespace Sunyfor\LibOrderState;
 
-use Sunyforss\LibOrderState\Model\Ord_b2c;
+use Sunyfor\LibOrderState\Model\Ord_b2c;
 use Exception;
 
 class OrderState
 {
-    public function __construct()
-    {
+    protected $config;
 
+    public function __construct($config=array())
+    {
+        $this->config = $config;
     }
 
     // 주문상태변경
@@ -31,8 +33,10 @@ class OrderState
         $result = true;
         $allowStatus = array('1', '2', '3', '4', '5');
 
+        $ord_b2c = new Ord_b2c($this->config);
+
         try {
-            $ord_b2c = new Ord_b2c();
+            $ord_b2c = new Ord_b2c($this->config);
             $DB = $ord_b2c->getConnection();
 
             // 주문상품목록
@@ -95,7 +99,7 @@ class OrderState
         $result = true;
 
         try{
-            $ord_b2c = new Ord_b2c();
+            $ord_b2c = new Ord_b2c($this->config);
             $DB = $ord_b2c->getConnection();
 
             // 주문상품목록
@@ -166,7 +170,7 @@ class OrderState
         $result = true;
 
         try{
-            $ord_b2c = new Ord_b2c();
+            $ord_b2c = new Ord_b2c($this->config);
             $DB = $ord_b2c->getConnection();
 
             // 주문번호 상세정보
@@ -217,7 +221,7 @@ class OrderState
         $result = true;
 
         try{
-            $ord_b2c = new Ord_b2c();
+            $ord_b2c = new Ord_b2c($this->config);
             $DB = $ord_b2c->getConnection();
 
             // 주문번호 상세정보

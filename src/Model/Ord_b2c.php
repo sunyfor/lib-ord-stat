@@ -3,6 +3,7 @@
 namespace Sunyfor\LibOrderState\Model;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Capsule\Manager as Capsule;
 use Exception;
 
 class Ord_b2c
@@ -10,8 +11,28 @@ class Ord_b2c
     protected $connection = 'pping_order_local';
     protected $DB;
 
-    public function __construct() {
-        $this->DB = DB::connection($this->connection);
+    public function __construct($config=array()) {
+
+        try {
+            $this->DB = DB::connection($this->connection);
+        } catch(Exception $e) {
+            if(empty($config)) {
+                throw new Exception("Connection not found ");
+            } else {
+                $this->DB = $this->connection($config);
+            }
+        }
+    }
+
+    protected function connection($config) {
+
+        $capsule = new Capsule();
+
+        $capsule->addConnection($config, $this->connection);
+        $capsule->setAsGlobal();
+		$capsule->bootEloquent();
+
+        return $capsule->connection($this->connection);
     }
 
     public function getConnection() {
