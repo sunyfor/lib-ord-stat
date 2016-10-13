@@ -1,0 +1,42 @@
+{
+    "name": "sunyfor/lib-ord-stat",
+    "description": "The Happy-Shopping OrderStatus package [lib-ord-stat]",
+    "license": "MIT",
+    "homepage": "http://pc.pping.kr",
+    "support": {
+        "issues": "https://github.com/happy-shopping/lib-ord-stat/issues",
+        "source": "https://github.com/Happy-Shopping/lib-ord-stat"
+    },
+    "keywords": ["laravel", "database", "sql", "orm"],
+    "authors": [
+        {
+            "name": "Happy Shopping",
+            "email": "yschoi@pping.kr"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "illuminate/database": "5.2",
+        "illuminate/support": "5.2.*"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "git@github.com:happy-shopping/lib-ord-stat.git"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sunyfor\\LibOrderState\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
+    "suggest": {
+
+    },
+    "minimum-stability": "dev"
+}
